@@ -1,0 +1,46 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.4']
+
+      fail-fast: false
+
+    services:
+      mysql:
+        image: mariadb:latest
+        env:
+          MYSQL_USER: user
+          MYSQL_PASSWORD: password
+          MYSQL_DATABASE: nettrine
+          MYSQL_ROOT_PASSWORD: password
+        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
+        ports:
+          - 3306:3306
+
+    name: PHP ${{ matrix.php }} Nettrine tests
+    steps:
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@v1
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: json, mbstring, xml, tokenizer
+          coverage: none
+
+      - run: make
+      - run: touch app/config/local.neon
+      - run: 'composer set-config -- $(pwd)/app/config/local.neon \
+        --dbDriver=mysql \
+        --dbHost=127.0.0.1 \
+        --dbUser=root \
+        --dbPassword=password \
+        --dbName=nettrine'
+      - run: php bin/console migrations:migrate -n
+      - run: php bin/console doctrine:fixtures:load -n
+      - run: php bin/console orm:validate
+      - run: make qa

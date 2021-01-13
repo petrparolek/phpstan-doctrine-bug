@@ -1,0 +1,14 @@
+categories:
+	id: ID
+	title: Category title
+
+	delete: Delete category
+	success_delete: Category was successfully deleted
+
+history:
+	articles: History of changes in articles
+	dateTime: Date and time
+	action: Action
+	create: created
+	update: updated
+	remove: removed
