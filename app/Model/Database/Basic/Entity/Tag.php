@@ -20,7 +20,7 @@ class Tag extends Entity
 	private string $title;
 
 	/**
-	 * @var Book[]|Collection
+	 * @var Collection<int, Book>
 	 * @ORM\ManyToMany(targetEntity="Book", inversedBy="tags")
 	 */
 	private Collection $books;
@@ -44,7 +44,7 @@ class Tag extends Entity
 	}
 
 	/**
-	 * @return Book[]|Collection
+	 * @return Collection<int, Book>
 	 */
 	public function getBooks(): Collection
 	{

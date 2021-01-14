@@ -5,6 +5,9 @@ namespace App\Model\Database\Repository;
 use Doctrine\ORM\EntityRepository as DoctrineEntityRepository;
 
 /**
+ * @template T
+ * @extends DoctrineEntityRepository<T>
+ *
  * Custom base EntityRepository
  */
 abstract class EntityRepository extends DoctrineEntityRepository

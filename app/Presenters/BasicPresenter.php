@@ -21,6 +21,7 @@ class BasicPresenter extends Presenter
 		$categoryRepository = $this->em->getCategoryRepository();
 		$tagRepository = $this->em->getTagRepository();
 		$tags = $tagRepository->findTagsByIds([1, 2]);
+
 		foreach ($tags as $tag) {
 			bdump($tag);
 		}
@@ -65,7 +66,7 @@ class BasicPresenter extends Presenter
 
 		$book = $bookRepository->find($id);
 
-		if ($book) {
+		if ($book instanceof Book) {
 			$this->em->remove($book);
 			$this->em->flush();
 		}

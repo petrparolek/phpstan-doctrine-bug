@@ -3,7 +3,5 @@ parameters:
 	paths:
 		- app
 
-	checkGenericClassInNonGenericObjectType: false
-
 	doctrine:
 		objectManagerLoader: build/object-manager.php

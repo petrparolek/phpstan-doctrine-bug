@@ -20,7 +20,7 @@ class Category extends Entity
 	private string $title;
 
 	/**
-	 * @var Book[]|Collection
+	 * @var Collection<int, Book>
 	 * @ORM\OneToMany(targetEntity="Book", mappedBy="category")
 	 */
 	private Collection $books;
@@ -44,7 +44,7 @@ class Category extends Entity
 	}
 
 	/**
-	 * @return Book[]|Collection
+	 * @return Collection<int, Book>
 	 */
 	public function getBooks(): Collection
 	{

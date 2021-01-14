@@ -2,11 +2,10 @@
 
 namespace App\Model\Database\Basic\Repository;
 
+use App\Model\Database\Basic\Entity\Category;
 use App\Model\Database\Repository\EntityRepository;
 
-/**
- * Custom CategoryRepository
- */
+/** @extends EntityRepository<Category> */
 final class CategoryRepository extends EntityRepository
 {
 

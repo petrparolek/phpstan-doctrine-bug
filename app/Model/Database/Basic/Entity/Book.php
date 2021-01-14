@@ -38,7 +38,7 @@ class Book extends Entity
 	private Category $category;
 
 	/**
-	 * @var Tag[]|Collection
+	 * @var Collection<int, Tag>
 	 * @ORM\ManyToMany(targetEntity="Tag", mappedBy="books")
 	 */
 	private Collection $tags;
@@ -79,7 +79,7 @@ class Book extends Entity
 	}
 
 	/**
-	 * @return Tag[]|Collection
+	 * @return Collection<int, Tag>
 	 */
 	public function getTags(): Collection
 	{

@@ -8,9 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 
-/**
- * Custom TagRepository
- */
+/** @extends EntityRepository<Tag> */
 final class TagRepository extends EntityRepository
 {
 
